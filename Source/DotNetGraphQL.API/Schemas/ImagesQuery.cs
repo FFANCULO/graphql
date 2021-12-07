@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DotNetGraphQL.Common;
+using DotNetGraphQL.Common.Models;
 using GraphQL;
 using GraphQL.Types;
 
-namespace DotNetGraphQL.API
+namespace DotNetGraphQL.API.Schemas
 {
     public class ImagesQuery : ObjectGraphType
     {

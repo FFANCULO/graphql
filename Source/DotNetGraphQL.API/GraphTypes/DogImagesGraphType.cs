@@ -1,4 +1,6 @@
-﻿using DotNetGraphQL.Common;
+﻿using DotNetGraphQL.API.GraphTypes;
+using DotNetGraphQL.Common;
+using DotNetGraphQL.Common.Models;
 using GraphQL.Types;
 
 namespace DotNetGraphQL.API

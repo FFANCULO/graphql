@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace DotNetGraphQL.Common
+namespace DotNetGraphQL.Common.Models
 {
     public class DogImagesGraphQLResponse
     {

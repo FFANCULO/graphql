@@ -1,3 +1,4 @@
+using DotNetGraphQL.API.Schemas;
 using GraphQL.Server;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

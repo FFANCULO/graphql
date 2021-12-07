@@ -1,9 +1,12 @@
 ﻿using GraphQL.Types;
 
-namespace DotNetGraphQL.API
+namespace DotNetGraphQL.API.Schemas
 {
     public class ImagesSchema : Schema
     {
-        public ImagesSchema() => Query = new ImagesQuery();
+        public ImagesSchema()
+        {
+            Query = new ImagesQuery();
+        }
     }
 }

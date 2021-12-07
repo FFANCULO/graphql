@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DotNetGraphQL.Common;
+using DotNetGraphQL.Common.Models;
 using GraphQL;
 using GraphQL.Client.Http;
 using GraphQL.Client.Serializer.Newtonsoft;
 using Polly;
 
-namespace DotNetGraphQL.Mobile
+namespace DotNetGraphQL.Mobile.Services
 {
     public static class GraphQLService
     {

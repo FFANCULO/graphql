@@ -1,7 +1,7 @@
-﻿using DotNetGraphQL.Common;
+﻿using DotNetGraphQL.Common.Models;
 using GraphQL.Types;
 
-namespace DotNetGraphQL.API
+namespace DotNetGraphQL.API.GraphTypes
 {
     abstract class ImagesGraphType<T> : ObjectGraphType<T> where T : ImagesModel
     {

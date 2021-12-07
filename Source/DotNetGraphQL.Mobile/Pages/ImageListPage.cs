@@ -4,6 +4,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.CommunityToolkit.Markup;
 using System;
+using DotNetGraphQL.Common.Models;
 
 namespace DotNetGraphQL.Mobile
 {

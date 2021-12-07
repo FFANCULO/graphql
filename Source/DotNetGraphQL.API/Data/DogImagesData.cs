@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DotNetGraphQL.Common;
+using DotNetGraphQL.Common.Models;
 
 namespace DotNetGraphQL.API
 {

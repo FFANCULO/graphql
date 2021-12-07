@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using AsyncAwaitBestPractices;
 using AsyncAwaitBestPractices.MVVM;
 using DotNetGraphQL.Common;
+using DotNetGraphQL.Common.Models;
+using DotNetGraphQL.Mobile.Services;
 using Xamarin.Essentials;
 
 namespace DotNetGraphQL.Mobile
