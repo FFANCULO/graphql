@@ -12,6 +12,7 @@ namespace DotNetGraphQL.API
             Field(x => x.Breed, false);
             Field<DateTimeGraphType>("birthDate", resolve: x => x.Source?.BirthDate);
             Field(x => x.CoatColor, false);
+
         }
     }
 }
