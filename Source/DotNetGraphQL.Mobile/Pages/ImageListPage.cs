@@ -1,18 +1,17 @@
-﻿using System.Linq;
-using DotNetGraphQL.Common;
+﻿using System;
+using System.Linq;
+using DotNetGraphQL.Common.Models;
+using Xamarin.CommunityToolkit.Markup;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.CommunityToolkit.Markup;
-using System;
-using DotNetGraphQL.Common.Models;
 
-namespace DotNetGraphQL.Mobile
+namespace DotNetGraphQL.Mobile.Pages
 {
     class DogImageListPage : BaseContentPage<DogImageListViewModel>
     {
         public DogImageListPage()
         {
-            ViewModel.PullToRefreshFailed += HandlePullToRefreshFailed;
+            ViewModel.PullToRefreshFailed += (sender, message) => MainThread.BeginInvokeOnMainThread(async () => await DisplayAlert("Refresh Failed", message, "OK"));
 
             Title = "Favorite Dogs";
 
@@ -26,25 +25,20 @@ namespace DotNetGraphQL.Mobile
                     ItemTemplate = new DogImageListDataTemplateSelector(),
                     SelectionMode = SelectionMode.Single,
                 }.Bind(CollectionView.ItemsSourceProperty, nameof(DogImageListViewModel.DogImageList))
-                 .Invoke(collectionView => collectionView.SelectionChanged += HandleCollectionViewSelectionChanged)
+                 .Invoke(collectionView => collectionView.SelectionChanged += (sender, e) =>
+                 {
+                     var collectionView1 = (CollectionView)sender;
+                     collectionView1.SelectedItem = null;
+
+                     //if (e.CurrentSelection.FirstOrDefault() is DogImagesModel dogImagesModel
+                     //    && Uri.TryCreate(dogImagesModel.Breed, UriKind.Absolute, out _))
+                     //{
+                     //    await OpenBrowser(dogImagesModel.Breed);
+                     //}
+                 })
 
             }.Bind(RefreshView.CommandProperty, nameof(DogImageListViewModel.RefreshDogCollectionCommand))
              .Bind(RefreshView.IsRefreshingProperty, nameof(DogImageListViewModel.IsDogImageCollectionRefreshing));
-        }
-
-        void HandlePullToRefreshFailed(object sender, string message) =>
-            MainThread.BeginInvokeOnMainThread(async () => await DisplayAlert("Refresh Failed", message, "OK"));
-
-        async void HandleCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var collectionView = (CollectionView)sender;
-            collectionView.SelectedItem = null;
-
-            if (e.CurrentSelection.FirstOrDefault() is DogImagesModel dogImagesModel
-                    && Uri.TryCreate(dogImagesModel.WebsiteUrl, UriKind.Absolute, out _))
-            {
-                await OpenBrowser(dogImagesModel.WebsiteUrl);
-            }
         }
     }
 }

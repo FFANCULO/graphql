@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using DotNetGraphQL.Mobile.Pages;
+using Xamarin.Forms;
 
 namespace DotNetGraphQL.Mobile
 {

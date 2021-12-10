@@ -16,16 +16,16 @@ namespace DotNetGraphQL.Mobile.Services
 
         static GraphQLHttpClient Client => _clientHolder.Value;
 
-        public static async Task<IReadOnlyList<DogImagesModel>> GetDogImages()
+        public static async Task<IReadOnlyList<RateBookModel>> GetDogImages()
         {
             var graphQLRequest = new GraphQLRequest
             {
                 Query = "query { dogs  { avatarUrl, birthDate, breed, coatColor, imagesList, title, websiteUrl } }"
             };
 
-            var dogImages = await AttemptAndRetry(() => Client.SendQueryAsync<DogImagesGraphQLResponse>(graphQLRequest)).ConfigureAwait(false);
+            var dogImages = await AttemptAndRetry(() => Client.SendQueryAsync<RateBooksGraphQLResponse>(graphQLRequest)).ConfigureAwait(false);
 
-            return dogImages.Dogs;
+            return dogImages.RateBooks;
         }
 
         static GraphQLHttpClient CreateGraphQLClient() {

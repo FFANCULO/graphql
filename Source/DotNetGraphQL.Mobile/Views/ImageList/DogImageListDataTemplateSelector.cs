@@ -9,7 +9,7 @@ namespace DotNetGraphQL.Mobile
 {
     class DogImageListDataTemplateSelector : DataTemplateSelector
     {
-        protected override DataTemplate OnSelectTemplate(object item, BindableObject container) => new DogImageListDataTemplate((DogImagesModel)item);
+        protected override DataTemplate OnSelectTemplate(object item, BindableObject container) => new DogImageListDataTemplate((RateBookModel)item);
 
         class DogImageListDataTemplate : DataTemplate
         {
@@ -18,7 +18,7 @@ namespace DotNetGraphQL.Mobile
             const int _circleImageHeight = 90;
             const double _titleFontSize = 21.333;
 
-            public DogImageListDataTemplate(DogImagesModel dogImagesModel) : base(() => CreateContentFrame(dogImagesModel))
+            public DogImageListDataTemplate(RateBookModel rateBookModel) : base(() => CreateContentFrame(rateBookModel))
             {
             }
 
@@ -28,7 +28,7 @@ namespace DotNetGraphQL.Mobile
             enum ImageLayoutRow { TopPadding, Name, Breed, Coat, Birthday, BottomPadding }
             enum ImageLayoutColumn { Avatar, MiddlePadding, Text }
 
-            static Grid CreateContentFrame(DogImagesModel dogImagesModel) => new()
+            static Grid CreateContentFrame(RateBookModel rateBookModel) => new()
             {
                 RowDefinitions = Rows.Define(
                     (ContentFrameRow.TopPadding, _padding),
@@ -41,11 +41,11 @@ namespace DotNetGraphQL.Mobile
 
                 Children =
                 {
-                    new ContentFrame(CreateImageLayout(dogImagesModel)).Row(ContentFrameRow.Content).Column(ContentFrameColumn.Content)
+                    new ContentFrame(CreateImageLayout(rateBookModel)).Row(ContentFrameRow.Content).Column(ContentFrameColumn.Content)
                 }
             };
 
-            static Grid CreateImageLayout(DogImagesModel dogImagesModel) => new Grid
+            static Grid CreateImageLayout(RateBookModel rateBookModel) => new Grid
             {
                 BackgroundColor = Color.Transparent,
 
@@ -67,11 +67,11 @@ namespace DotNetGraphQL.Mobile
 
                 Children =
                 {
-                    new AvatarImage(dogImagesModel.AvatarUrl).Row(ImageLayoutRow.Name).Column(ImageLayoutColumn.Avatar).RowSpan(All<ImageLayoutRow>()),
-                    new DogNameLabel(dogImagesModel.Title).Row(ImageLayoutRow.Name).Column(ImageLayoutColumn.Text),
-                    new DarkBlueLabel(_fontSize, $"🐶 {dogImagesModel.Breed}").Row(ImageLayoutRow.Breed).Column(ImageLayoutColumn.Text),
-                    new DarkBlueLabel(_fontSize, $"🎨 {dogImagesModel.CoatColor}").Row(ImageLayoutRow.Coat).Column(ImageLayoutColumn.Text),
-                    new DarkBlueLabel(_fontSize, $"🎂 {dogImagesModel.BirthDate?.ToString("MMMM dd yyyy") ?? "Unknown"}").Row(ImageLayoutRow.Birthday).Column(ImageLayoutColumn.Text),
+                    //new AvatarImage(dogImagesModel.AvatarUrl).Row(ImageLayoutRow.Name).Column(ImageLayoutColumn.Avatar).RowSpan(All<ImageLayoutRow>()),
+                    //new DogNameLabel(dogImagesModel.Title).Row(ImageLayoutRow.Name).Column(ImageLayoutColumn.Text),
+                    new DarkBlueLabel(_fontSize, $"🐶 {rateBookModel.Title}").Row(ImageLayoutRow.Breed).Column(ImageLayoutColumn.Text),
+                    new DarkBlueLabel(_fontSize, $"🎨 {rateBookModel.LineOfBusiness}").Row(ImageLayoutRow.Coat).Column(ImageLayoutColumn.Text),
+                    new DarkBlueLabel(_fontSize, $"🎂 {rateBookModel.Jurisdiction ?? "Unknown"}").Row(ImageLayoutRow.Birthday).Column(ImageLayoutColumn.Text),
                 }
             }.Start().TopExpand();
 
