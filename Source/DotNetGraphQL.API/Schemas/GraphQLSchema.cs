@@ -6,7 +6,7 @@ namespace DotNetGraphQL.API.Schemas
     {
         public ImagesSchema()
         {
-            Query = new ImagesQuery();
+            Query = new MRCMainQuery();
         }
     }
 }

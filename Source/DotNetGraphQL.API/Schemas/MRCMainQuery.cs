@@ -9,19 +9,19 @@ using GraphQL.Types;
 
 namespace DotNetGraphQL.API.Schemas
 {
-    public class ImagesQuery : ObjectGraphType
+    public class MRCMainQuery : ObjectGraphType
     {
-        public ImagesQuery()
+        public MRCMainQuery()
         {
             Name = "Query";
 
             Field<ListGraphType<RateBooksGraphType>>("RateBooks", "Query for RateBooks",
                 resolve: context => RateBookData.Data);
-/*
+
             var queryArgument = new QueryArgument<NonNullGraphType<StringGraphType>>
             {
                 Name = "name",
-                Description = "Dog Name"
+                Description = "Name of Book"
             };
 
             Field<RateBooksGraphType>("RateBook", "Query a specific RateBook",
@@ -29,10 +29,18 @@ namespace DotNetGraphQL.API.Schemas
                 context =>
                 {
                     RateBookModel rateBookModel = RateBookData.Data.Single(x =>
-                        x.Title.Equals(context.GetArgument<string>("name"), StringComparison.OrdinalIgnoreCase));
+                    {
+                        return Compare();
+
+                        bool Compare()
+                        {
+                            return x.Title.Equals(context.GetArgument<string>("name"), 
+                                StringComparison.OrdinalIgnoreCase);
+                        }
+                    });
                     return rateBookModel;
                 });
-
+/*
             var queryArguments = new QueryArguments(
                 new QueryArgument<StringGraphType>
                 {
